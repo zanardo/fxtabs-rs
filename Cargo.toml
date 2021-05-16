@@ -1,0 +1,16 @@
+[package]
+name = "fxtabs"
+version = "0.1.0"
+authors = ["Antonio Zanardo <zanardo@gmail.com>"]
+edition = "2018"
+license-file = "COPYING"
+description = "Collect open tabs on all Mozilla Firefox windows"
+homepage = "https://github.com/zanardo/fxtabs-rs"
+repository = "https://github.com/zanardo/fxtabs-rs"
+readme = "README.md"
+
+[dependencies]
+anyhow = "1.0.0"
+serde = { version = "1.0.0", features = [ "derive" ] }
+serde_json = "1.0.0"
+lz4 = "1.23.2"
