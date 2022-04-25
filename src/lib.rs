@@ -7,7 +7,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FirefoxTab {
+    #[serde(skip)]
     pub window: usize,
+    #[serde(skip)]
     pub tab: usize,
     pub title: String,
     pub url: String,
