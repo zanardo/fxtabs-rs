@@ -7,6 +7,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FirefoxTab {
+    #[serde(skip)]
+    pub window: usize,
+    #[serde(skip)]
+    pub tab: usize,
     pub title: String,
     pub url: String,
 }
@@ -46,11 +50,13 @@ pub fn open_tabs(file_path: &str) -> Result<Vec<FirefoxTab>> {
 
     // Parsing json.
     let v: Data = serde_json::from_slice(&json)?;
-    for w in v.windows {
-        for t in w.tabs {
+    for (w_count, w) in v.windows.into_iter().enumerate() {
+        for (t_count, t) in w.tabs.into_iter().enumerate() {
             let index = t.index as usize - 1;
             if let Some(e) = &t.entries.get(index) {
                 firefox_tabs.push(FirefoxTab {
+                    window: w_count,
+                    tab: t_count,
                     title: e.title.clone(),
                     url: e.url.clone(),
                 });
